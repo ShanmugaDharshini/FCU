@@ -1,0 +1,39 @@
+ event.preventDefault();
+    setSubmitted(true);
+    console.log(formData);
+    // Reset form fields
+    setFormData({
+      firstname:'',
+      lastname:'',
+      username: '',
+      email: '',
+      password:'',
+      city:'',
+      state: '',
+      zipcode:'',
+      gender: '',
+      languages: [],
+    });
+    setSelectedOptions([]);
+  //};
+
+   console.log(event)
+    if (event.target.name === 'languages') {
+
+      let copy = { ...formData }
+
+      if (event.target.checked) {
+        copy.languages.push(event.target.value)
+      } else {
+        copy.languages = copy.languages.filter(el => el !== event.target.value)
+      }
+
+      setFormData(copy)
+
+    } else {
+      setFormData(() => ({
+        ...formData,
+        [event.target.name]: event.target.value
+      }))
+    }
+ 
